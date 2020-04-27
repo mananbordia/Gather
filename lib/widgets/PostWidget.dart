@@ -141,7 +141,7 @@ class _PostState extends State<Post> {
             trailing: isPostOwner
                 ? IconButton(
                     icon: Icon(
-                      Icons.menu,
+                      Icons.mode_edit,
                       color: Colors.white,
                     ),
                     onPressed: () {
@@ -158,10 +158,7 @@ class _PostState extends State<Post> {
 
   createPostPicture() {
     return GestureDetector(
-      onDoubleTap: () {
-        final snackBar = SnackBar(content: Text('Post Liked'));
-        Scaffold.of(context).showSnackBar(snackBar);
-      },
+      onDoubleTap: () => controlPostLikes,
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
@@ -170,6 +167,21 @@ class _PostState extends State<Post> {
       ),
     );
   }
+
+  controlPostLikes() {
+    bool _liked = likes[currentOnlineUserId] == true;
+
+    if (_liked) {
+      postsReference
+          .document(ownerId)
+          .collection("usersPosts")
+          .document(postId)
+          .updateData({"likes.$currentOnlineUserId": false});
+      removeLike();
+    } else {}
+  }
+
+  removeLike() {}
 
   createPostFooter() {
     return Column(

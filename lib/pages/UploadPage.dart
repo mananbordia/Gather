@@ -262,7 +262,10 @@ class _UploadPageState extends State<UploadPage>
         url: downloadUrl,
         location: locationTextEditingController.text,
         description: descriptionTextEditingController.text);
-
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("Post Uploaded Successfully"),
+      duration: Duration(seconds: 2),
+    ));
     removeCacheInfo();
   }
 

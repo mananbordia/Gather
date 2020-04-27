@@ -121,8 +121,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          ChewPlayer(),
-//          TimeLinePage(),
+//          ChewPlayer(),
+          TimeLinePage(),
 //          UploadMultipleImage(),
           SearchPage(),
           UploadPage(gCurrentUser: currentUser),
