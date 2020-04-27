@@ -33,7 +33,12 @@ dependencies:
   path_provider: ^0.5.0+1
   firebase_messaging: ^4.0.0+1
   firebase_storage: ^2.1.0+1
+  file_picker: ^1.6.2
+  http: ^0.12.0+4
+  chewie: ^0.9.10
+  video_player: ^0.10.8+1
   flutter_svg:
+
 
 dev_dependencies:
   flutter_test:

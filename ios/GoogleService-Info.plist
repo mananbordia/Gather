@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>410006906452-o69bgiu6f5p86apvhr3f90t8quhmq7mt.apps.googleusercontent.com</string>
+	<string>868285745403-gcl6gkr01q3va164c0ghf8ifet460vgt.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.410006906452-o69bgiu6f5p86apvhr3f90t8quhmq7mt</string>
+	<string>com.googleusercontent.apps.868285745403-gcl6gkr01q3va164c0ghf8ifet460vgt</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>410006906452-2mvfft2v3ueecrbliqe7t4hehrm2vr6q.apps.googleusercontent.com</string>
+	<string>868285745403-iks54l3k9b4kcvg2sfgft1pk3hip9dm8.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAwlTVLA1ydjr7u_F4S9ZB9CoYaUyC-Cuk</string>
+	<string>AIzaSyDuXpkm2az_YFJOuYobtvWee7-1_AW-Msk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>410006906452</string>
+	<string>868285745403</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.muhammadali.buddiesgram</string>
 	<key>PROJECT_ID</key>
-	<string>social-network-d4a26</string>
+	<string>insta-fake-14d8e</string>
 	<key>STORAGE_BUCKET</key>
-	<string>social-network-d4a26.appspot.com</string>
+	<string>insta-fake-14d8e.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:410006906452:ios:93095860a889e4e69c6fc1</string>
+	<string>1:868285745403:ios:b4daa0238af169be83085e</string>
 	<key>DATABASE_URL</key>
-	<string>https://social-network-d4a26.firebaseio.com</string>
+	<string>https://insta-fake-14d8e.firebaseio.com</string>
 </dict>
 </plist>
