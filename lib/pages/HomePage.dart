@@ -16,6 +16,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 final GoogleSignIn gSignIn = GoogleSignIn();
 final usersReference = Firestore.instance.collection("users");
 final postsReference = Firestore.instance.collection("posts");
+final activityReference = Firestore.instance.collection("feeds");
 final storageReference = FirebaseStorage.instance.ref().child("Post Images");
 
 final testStorageReference = FirebaseStorage.instance.ref().child("Test");

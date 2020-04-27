@@ -7,9 +7,9 @@ class PostTile extends StatelessWidget {
   PostTile(this.post);
 
   displayFullPost(context) {
-    Navigator.push(
+    return Navigator.push(
         context,
-        MaterialPageRoute(
+        new MaterialPageRoute(
             builder: (context) =>
                 PostScreenPage(postId: post.postId, userId: post.ownerId)));
   }
@@ -17,8 +17,8 @@ class PostTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => displayFullPost(context),
       child: Image.network(post.url),
+      onTap: () => displayFullPost(context),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:buddiesgram/pages/HomePage.dart';
 import 'package:buddiesgram/widgets/HeaderWidget.dart';
 import 'package:buddiesgram/widgets/PostWidget.dart';
+import 'package:buddiesgram/widgets/ProgressWidget.dart';
 import 'package:flutter/material.dart';
 
 class PostScreenPage extends StatelessWidget {
@@ -19,20 +20,21 @@ class PostScreenPage extends StatelessWidget {
             .get(),
         builder: (context, dataSnapshot) {
           if (!dataSnapshot.hasData) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
+          } else {
+            Post post = Post.fromDocument(dataSnapshot.data);
+            return Center(
+                child: Scaffold(
+              appBar: header(context, customTitle: post.description),
+              body: ListView(
+                children: <Widget>[
+                  Container(
+                    child: post,
+                  ),
+                ],
+              ),
+            ));
           }
-          Post post = Post.fromDocument(dataSnapshot.data);
-          return Center(
-              child: Scaffold(
-            appBar: header(context, customTitle: post.description),
-            body: ListView(
-              children: <Widget>[
-                Container(
-                  child: post,
-                ),
-              ],
-            ),
-          ));
         });
   }
 }

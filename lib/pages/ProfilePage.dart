@@ -273,16 +273,12 @@ class _ProfilePageState extends State<ProfilePage> {
         IconButton(
           onPressed: () => setOrientation("grid"),
           icon: Icon(Icons.grid_on),
-          color: postOrientation == "grid"
-              ? Theme.of(context).primaryColor
-              : Colors.grey,
+          color: postOrientation == "grid" ? Colors.lightGreen : Colors.grey,
         ),
         IconButton(
           onPressed: () => setOrientation("list"),
           icon: Icon(Icons.list),
-          color: postOrientation == "list"
-              ? Theme.of(context).primaryColor
-              : Colors.grey,
+          color: postOrientation == "list" ? Colors.lightGreen : Colors.grey,
         ),
       ],
     );
