@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:buddiesgram/models/user.dart';
+import 'package:buddiesgram/pages/CommentsPage.dart';
 import 'package:buddiesgram/pages/HomePage.dart';
 import 'package:buddiesgram/widgets/ProgressWidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -267,10 +268,8 @@ class _PostState extends State<Post> {
             ),
             Padding(padding: EdgeInsets.only(top: 40.0, left: 20.0)),
             GestureDetector(
-              onTap: () {
-                final snackBar = SnackBar(content: Text('Showing Comments'));
-                Scaffold.of(context).showSnackBar(snackBar);
-              },
+              onTap: () => displayCommentScreen(context,
+                  postId: postId, ownerId: ownerId, url: url),
               child: Icon(
                 Icons.chat_bubble_outline,
                 size: 28.0,
@@ -311,5 +310,14 @@ class _PostState extends State<Post> {
         )
       ],
     );
+  }
+
+  displayCommentScreen(BuildContext context,
+      {String postId, String ownerId, String url}) {
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                CommentsPage(postId: postId, ownerId: ownerId, postUrl: url)));
   }
 }

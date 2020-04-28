@@ -282,7 +282,7 @@ class _UploadPageState extends State<UploadPage>
 
   Future<String> uploadImageToFirebase(mFile) async {
     StorageUploadTask mStorageUploadTask =
-        storageReference.child("post_$postId.jpg").putFile(mFile);
+        postStorageReference.child("post_$postId.jpg").putFile(mFile);
     StorageTaskSnapshot mStorageTaskSnapshot =
         await mStorageUploadTask.onComplete;
     String mDownloadUrl = await mStorageTaskSnapshot.ref.getDownloadURL();

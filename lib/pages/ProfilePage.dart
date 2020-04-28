@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
+import 'package:image/image.dart' as ImD;
 import 'package:buddiesgram/models/user.dart';
 import 'package:buddiesgram/pages/EditProfilePage.dart';
 import 'package:buddiesgram/pages/HomePage.dart';
@@ -10,6 +14,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 class ProfilePage extends StatefulWidget {
   final String userProfileId;
@@ -44,10 +51,20 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      CircleAvatar(
-                        radius: 45.0,
-                        backgroundColor: Colors.grey,
-                        backgroundImage: CachedNetworkImageProvider(user.url),
+                      Material(
+//                        elevation: 20.0,
+                        shape: CircleBorder(),
+                        clipBehavior: Clip.hardEdge,
+                        color: Colors.white,
+                        child: Ink.image(
+                          image: CachedNetworkImageProvider(user.url),
+                          fit: BoxFit.cover,
+                          width: 90,
+                          height: 90,
+                          child: InkWell(
+                            onTap: setProfilePic,
+                          ),
+                        ),
                       ),
                       Expanded(
                           flex: 1,
@@ -110,6 +127,57 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ));
         });
+  }
+
+  setProfilePic() async {
+    File imageFile = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+    imageFile = await compressImage(imageFile);
+    String postId = Uuid().v4();
+    String profilePicUrl = await uploadImageToFirebase(imageFile, postId);
+    print(profilePicUrl);
+    await usersReference
+        .document(currentUser.id)
+        .updateData({"url": profilePicUrl.toString()});
+    await savePostInfoToFireStore(url: profilePicUrl, postId: postId);
+    setState(() {});
+  }
+
+  compressImage(file) async {
+    final tDirectory = await getTemporaryDirectory();
+    final path = tDirectory.path;
+    ImD.Image mImageFile = ImD.decodeImage((file.readAsBytesSync()));
+    final compressedImageFile = File('$path/im_${currentUser.username}.jpg')
+      ..writeAsBytesSync(ImD.encodeJpg(mImageFile, quality: 50));
+    return compressedImageFile;
+  }
+
+  Future<String> uploadImageToFirebase(mFile, postId) async {
+    StorageUploadTask mStorageUploadTask =
+        postStorageReference.child("post_$postId.jpg").putFile(mFile);
+    StorageTaskSnapshot mStorageTaskSnapshot =
+        await mStorageUploadTask.onComplete;
+    String mDownloadUrl = await mStorageTaskSnapshot.ref.getDownloadURL();
+
+    return mDownloadUrl;
+  }
+
+  savePostInfoToFireStore({String url, String postId}) {
+    postsReference
+        .document(currentUser.id)
+        .collection("usersPosts")
+        .document(postId)
+        .setData({
+      "postId": postId,
+      "ownerId": currentUser.id,
+      "timestamp": timestamp,
+      "likes": {},
+      "username": currentUser.username,
+      "description": "Profile Pic Updated",
+      "location": "",
+      "url": url
+    });
   }
 
   editUserProfile() {
