@@ -1,5 +1,4 @@
 import 'package:buddiesgram/pages/HomePage.dart';
-import 'package:buddiesgram/pages/PostScreenPage.dart';
 import 'package:buddiesgram/pages/ProfilePage.dart';
 import 'package:buddiesgram/widgets/HeaderWidget.dart';
 import 'package:buddiesgram/widgets/ProgressWidget.dart';
@@ -7,6 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as tgo;
+
+import 'PostScreenPage.dart';
 
 class NotificationsPage extends StatefulWidget {
   @override
@@ -172,6 +173,6 @@ class NotificationsItem extends StatelessWidget {
         context,
         new MaterialPageRoute(
             builder: (context) =>
-                PostScreenPage(postId: postId, userId: userId)));
+                PostScreenPage(postId: postId, userId: currentUser.id)));
   }
 }
