@@ -66,7 +66,7 @@ class CommentsPageState extends State<CommentsPage> {
   }
 
   saveComments() {
-    if (textEditingController.text != null) {
+    if (textEditingController.text.trim() != null) {
       commentsReference.document(postId).collection("comments").add({
         "username": currentUser.username,
         "comment": textEditingController.text.trim(),
@@ -75,19 +75,20 @@ class CommentsPageState extends State<CommentsPage> {
         "userId": currentUser.id,
       });
 
-      bool isNotOwner = ownerId != currentUser.id;
+      bool isNotOwner = (ownerId != currentUser.id);
 
       if (isNotOwner) {
         activityReference.document(ownerId).collection("feedItems").add({
           "type": "comment",
+          "commentData": textEditingController.text.trim(),
           "username": currentUser.username,
           "userId": currentUser.id,
-          "commentData": textEditingController.text.trim(),
           "url": postUrl,
           "postId": postId,
           "userProfileImg": currentUser.url,
-          "timeStamp": DateTime.now(),
+          "timestamp": timestamp,
         });
+        print("Commented");
       }
       textEditingController.clear();
     }
