@@ -88,7 +88,6 @@ class CommentsPageState extends State<CommentsPage> {
           "userProfileImg": currentUser.url,
           "timestamp": timestamp,
         });
-        print("Commented");
       }
       textEditingController.clear();
     }

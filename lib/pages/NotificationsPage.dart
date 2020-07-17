@@ -48,7 +48,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         .getDocuments();
     List<NotificationsItem> notificationsItem = [];
     querySnapshot.documents.forEach((document) {
-      print('comments : ${document.data["commentData"].toString()}');
+//      print('comments : ${document.data["commentData"].toString()}');
       notificationsItem.add(NotificationsItem.fromDocument(document));
     });
     return notificationsItem;

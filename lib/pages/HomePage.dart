@@ -4,7 +4,7 @@ import 'package:buddiesgram/pages/NotificationsPage.dart';
 import 'package:buddiesgram/pages/ProfilePage.dart';
 import 'package:buddiesgram/pages/SearchPage.dart';
 import 'package:buddiesgram/pages/TimeLinePage.dart';
-import 'package:buddiesgram/pages/UploadMultipleFiles.dart';
+//import 'package:buddiesgram/pages/UploadMultipleFiles.dart';
 import 'package:buddiesgram/pages/UploadPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -19,6 +19,7 @@ final commentsReference = Firestore.instance.collection("comments");
 final activityReference = Firestore.instance.collection("feeds");
 final followersReference = Firestore.instance.collection("followers");
 final followingReference = Firestore.instance.collection("following");
+final timelineReference = Firestore.instance.collection("timeline");
 final postStorageReference =
     FirebaseStorage.instance.ref().child("Post Images");
 
@@ -71,6 +72,12 @@ class _HomePageState extends State<HomePage> {
         "bio": "",
         "timestamp": timestamp
       });
+
+      await followersReference
+          .document(gCurrentUser.id)
+          .collection("userFollowers")
+          .document(gCurrentUser.id)
+          .setData({});
 
       documentSnapshot = await usersReference.document(gCurrentUser.id).get();
     }
@@ -126,7 +133,7 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         children: <Widget>[
 //          ChewPlayer(),
-          TimeLinePage(),
+          TimeLinePage(gCurrentUser: currentUser),
 //          UploadMultipleImage(),
           SearchPage(),
           UploadPage(gCurrentUser: currentUser),
