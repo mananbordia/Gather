@@ -82,10 +82,11 @@ class CommentsPageState extends State<CommentsPage> {
           "type": "comment",
           "username": currentUser.username,
           "userId": currentUser.id,
-          "timestamp": timestamp,
+          "timestamp": DateTime.now(),
           "url": postUrl,
           "postId": postId,
           "userProfileImg": currentUser.url,
+          "timeStamp": DateTime.now(),
         });
       }
       textEditingController.clear();

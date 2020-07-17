@@ -10,7 +10,7 @@ AppBar header(context,
     ),
     automaticallyImplyLeading: displayBackButton ? true : false,
     title: Text(
-      displayAppTitle ? "Fake Insta" : customTitle,
+      displayAppTitle ? "Gather" : customTitle,
       style: TextStyle(
           color: Colors.white, fontFamily: "Signatra", fontSize: 45.0),
       overflow: TextOverflow.ellipsis,

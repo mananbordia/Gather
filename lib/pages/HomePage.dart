@@ -1,5 +1,4 @@
 import 'package:buddiesgram/models/user.dart';
-import 'package:buddiesgram/pages/ChewiePlayerPage.dart';
 import 'package:buddiesgram/pages/CreateAccountPage.dart';
 import 'package:buddiesgram/pages/NotificationsPage.dart';
 import 'package:buddiesgram/pages/ProfilePage.dart';
@@ -18,6 +17,8 @@ final usersReference = Firestore.instance.collection("users");
 final postsReference = Firestore.instance.collection("posts");
 final commentsReference = Firestore.instance.collection("comments");
 final activityReference = Firestore.instance.collection("feeds");
+final followersReference = Firestore.instance.collection("followers");
+final followingReference = Firestore.instance.collection("following");
 final postStorageReference =
     FirebaseStorage.instance.ref().child("Post Images");
 
