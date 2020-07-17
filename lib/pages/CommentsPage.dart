@@ -82,7 +82,7 @@ class CommentsPageState extends State<CommentsPage> {
           "type": "comment",
           "username": currentUser.username,
           "userId": currentUser.id,
-          "timestamp": DateTime.now(),
+          "commentData": textEditingController.text.trim(),
           "url": postUrl,
           "postId": postId,
           "userProfileImg": currentUser.url,
