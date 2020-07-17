@@ -58,7 +58,7 @@ Widget mediaPreview;
 
 class NotificationsItem extends StatelessWidget {
   final String username;
-  final String commentDate;
+  final String commentData;
   final String userId;
   final String postId;
   final String userProfileImg;
@@ -69,7 +69,7 @@ class NotificationsItem extends StatelessWidget {
   NotificationsItem(
       {this.username,
       this.timestamp,
-      this.commentDate,
+      this.commentData,
       this.type,
       this.postId,
       this.url,
@@ -80,7 +80,7 @@ class NotificationsItem extends StatelessWidget {
       username: documentSnapshot["username"],
       timestamp: documentSnapshot["timestamp"],
       postId: documentSnapshot["postId"],
-      commentDate: documentSnapshot["commentDate"],
+      commentData: documentSnapshot["commentData"],
       type: documentSnapshot["type"],
       url: documentSnapshot["url"],
       userId: documentSnapshot["userId"],
@@ -156,7 +156,7 @@ class NotificationsItem extends StatelessWidget {
       mediaPreview = Text("");
     }
     if (type == "comment") {
-      notificationItemText = "commented on your post $commentDate";
+      notificationItemText = "replied : $commentData";
     } else if (type == "like") {
       notificationItemText = "liked your post";
     } else if (type == "follow") {
