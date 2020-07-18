@@ -409,7 +409,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.muhammadali.buddiesgram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mananbordia.gather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
