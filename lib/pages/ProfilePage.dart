@@ -50,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
         .getDocuments();
 
     setState(() {
-      followingCount = querySnapshot.documents.length;
+      followingCount = querySnapshot.documents.length - 1;
     });
   }
 
@@ -60,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
         .collection("userFollowers")
         .getDocuments();
     setState(() {
-      followersCount = querySnapshot.documents.length;
+      followersCount = querySnapshot.documents.length - 1;
     });
   }
 

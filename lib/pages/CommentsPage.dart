@@ -86,7 +86,7 @@ class CommentsPageState extends State<CommentsPage> {
           "url": postUrl,
           "postId": postId,
           "userProfileImg": currentUser.url,
-          "timestamp": timestamp,
+          "timestamp": DateTime.now(),
         });
       }
       textEditingController.clear();

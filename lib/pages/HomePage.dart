@@ -78,6 +78,11 @@ class _HomePageState extends State<HomePage> {
           .collection("userFollowers")
           .document(gCurrentUser.id)
           .setData({});
+      await followingReference
+          .document(gCurrentUser.id)
+          .collection("userFollowing")
+          .document(gCurrentUser.id)
+          .setData({});
 
       documentSnapshot = await usersReference.document(gCurrentUser.id).get();
     }
@@ -97,7 +102,9 @@ class _HomePageState extends State<HomePage> {
         isSignedIn = true;
       });
     } else
-      isSignedIn = false;
+      setState(() {
+        isSignedIn = false;
+      });
   }
 
   loginUser() {
@@ -179,7 +186,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Cool App",
+              "Gather",
               style: TextStyle(
                   fontFamily: "Signatra", color: Colors.white, fontSize: 92.0),
             ),

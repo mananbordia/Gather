@@ -21,24 +21,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
   @override
   void initState() {
     super.initState();
-    retrieveTimeline();
     retrieveFollowings();
-  }
-
-  retrieveTimeline() async {
-    QuerySnapshot querySnapshot = await timelineReference
-        .document(widget.gCurrentUser.id)
-        .collection("timelinePosts")
-        .orderBy("timestamp", descending: true)
-        .getDocuments();
-
-    List<Post> allPosts = querySnapshot.documents
-        .map((document) => Post.fromDocument(document))
-        .toList();
-
-    setState(() {
-      this.posts = allPosts;
-    });
   }
 
   retrieveFollowings() async {
@@ -47,9 +30,34 @@ class _TimeLinePageState extends State<TimeLinePage> {
         .collection("userFollowing")
         .getDocuments();
     setState(() {
-      this.followingsList = querySnapshot.documents
+      followingsList = querySnapshot.documents
           .map((document) => document.documentID)
           .toList();
+    });
+    retrieveTimeline();
+  }
+
+  retrieveTimeline() async {
+    print(followingsList.length);
+    if (followingsList.length == 0) {
+      return;
+    }
+    posts = [];
+    followingsList.forEach((ownerId) async {
+      print(ownerId);
+      QuerySnapshot querySnapshot = await postsReference
+          .document(ownerId)
+          .collection("usersPosts")
+          .orderBy("timestamp", descending: true)
+          .getDocuments();
+
+      List<Post> someposts = querySnapshot.documents
+          .map((documentSnapshot) => Post.fromDocument((documentSnapshot)))
+          .toList();
+
+      setState(() {
+        posts += someposts;
+      });
     });
   }
 
@@ -63,7 +71,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
         ), //From Header Widget
         body: RefreshIndicator(
           child: createTimeline(),
-          onRefresh: () => retrieveTimeline(),
+          onRefresh: () => retrieveFollowings(),
         ));
   }
 
