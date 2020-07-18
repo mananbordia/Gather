@@ -1,1 +1,1 @@
-## BuddiesGram, a Social Network from Coding Cafe
+## Gather, a Social Networking App
